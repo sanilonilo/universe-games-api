@@ -3,13 +3,16 @@ import {SignupController} from './signup-controller'
 describe('SignupController', () => {
     test('Missing param name',async () => {
         const sut = new SignupController()
-        const body = {
-            name:'name_test',
-            email:'email@test',
-            password:'password_test'
+        const httpRequest = {
+            body:{
+                name:'',
+                email:'email@test',
+                password:'password_test'
+            }
         }
-        const response = sut.action()
+        const {body,status} = await sut.action(httpRequest)
 
-        expect(response).toEqual(new Error())
+        expect(status).toBe(400)
+        expect(body).toEqual(new Error('missing param name'))
     })
 })
