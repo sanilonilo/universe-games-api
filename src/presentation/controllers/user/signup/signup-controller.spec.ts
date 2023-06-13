@@ -1,9 +1,26 @@
 import {SignupController} from './signup-controller'
 import {MissingParamError} from '../../../errors'
+import {EmailValidator} from '../../../protocols'
+
+class EmailValidatorFake implements EmailValidator{
+    isValid(email: string){
+        return true
+    }
+}
+
+const makeSut = () => {
+    const emailValidator = new EmailValidatorFake()
+    const sut = new SignupController(emailValidator)
+
+    return {
+        sut,
+        emailValidator
+    }
+}
 
 describe('SignupController', () => {
     test('Missing param name: bad request status 400',async () => {
-        const sut = new SignupController()
+        const {sut} = makeSut()
         const httpRequest = {
             body:{
                 name:'',
@@ -19,7 +36,7 @@ describe('SignupController', () => {
     })
 
     test('Missing param email: bad request status 400',async () => {
-        const sut = new SignupController()
+        const {sut} = makeSut()
         const httpRequest = {
             body:{
                 name:'name_test',
@@ -35,7 +52,7 @@ describe('SignupController', () => {
     })
 
     test('Missing param password: bad request status 400',async () => {
-        const sut = new SignupController()
+        const {sut} = makeSut()
         const httpRequest = {
             body:{
                 name:'name_test',
@@ -51,7 +68,7 @@ describe('SignupController', () => {
     })
 
     test('Missing param confirm_password: bad request status 400',async () => {
-        const sut = new SignupController()
+        const {sut} = makeSut()
         const httpRequest = {
             body:{
                 name:'name_test',
@@ -67,7 +84,7 @@ describe('SignupController', () => {
     })
 
     test('Params password and confirm_password no confer: bad request status 400',async () => {
-        const sut = new SignupController()
+        const {sut} = makeSut()
         const httpRequest = {
             body:{
                 name:'name_test',
@@ -80,5 +97,22 @@ describe('SignupController', () => {
 
         expect(status).toBe(400)
         expect(body).toEqual(new Error('Password and password confirmation do not confer'))
+    })
+
+    test('Invalid param email: bad request status 400',async () => {
+        const {sut,emailValidator} = makeSut()
+        vi.spyOn(emailValidator,'isValid').mockReturnValueOnce(false)
+        const httpRequest = {
+            body:{
+                name:'name_test',
+                email:'email@test',
+                password:'password_test',
+                confirm_password: 'password_test'
+            }
+        }
+        const {body,status} = await sut.action(httpRequest)
+
+        expect(status).toBe(400)
+        expect(body).toEqual(new Error('Invalid param email'))
     })
 })
