@@ -6,9 +6,11 @@ export class SignupController implements Controller{
     async action(httpRequest:HttpRequest): Promise<HttpResponse>{
         const requiredFields = ['name','email','password','confirm_password']
 
-        for(let i = 0; i < requiredFields.length; i++){
+        for(let i = 0; i < requiredFields.length; i++)
             if(!httpRequest.body[requiredFields[i]]) 
                 return BadRequest(new MissingParamError(requiredFields[i]))
-        }
+        
+        if(httpRequest.body['password'].trim() !== httpRequest.body['confirm_password'].trim())
+            return BadRequest(new Error('Password and password confirmation do not confer'))        
     }
 }
