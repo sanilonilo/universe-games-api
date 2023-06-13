@@ -1,6 +1,6 @@
 import {SignupController} from './signup-controller'
 
-describe('SigninController', () => {
+describe('SignupController', () => {
     test('Missing param name',async () => {
         const sut = new SignupController()
         const body = {
