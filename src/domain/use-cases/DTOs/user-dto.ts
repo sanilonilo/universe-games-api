@@ -1,20 +1,20 @@
 export namespace UserDTO{
     
     export namespace DataEntry{
-        export interface CreateDTO{
+        export interface Create{
             name: string
             email: string
             password: string
         }
         
-        export interface SigninDTO{
+        export interface Signin{
             email: string
             password: string
         }
     }
 
     export namespace DataOutput{
-        export interface ReadDTO{
+        export interface Read{
             id: any
             name: string
             email: string
