@@ -1,4 +1,5 @@
 import {SignupController} from './signup-controller'
+import {MissingParamError} from '../../../errors'
 
 describe('SignupController', () => {
     test('Missing param name',async () => {
@@ -13,6 +14,6 @@ describe('SignupController', () => {
         const {body,status} = await sut.action(httpRequest)
 
         expect(status).toBe(400)
-        expect(body).toEqual(new Error('missing param name'))
+        expect(body).toEqual(new MissingParamError('name'))
     })
 })
