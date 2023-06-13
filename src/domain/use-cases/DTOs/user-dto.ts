@@ -1,4 +1,5 @@
 export namespace UserDTO{
+    
     export namespace DataEntry{
         export interface CreateDTO{
             name: string
@@ -14,6 +15,7 @@ export namespace UserDTO{
 
     export namespace DataOutput{
         export interface ReadDTO{
+            id: any
             name: string
             email: string
         }
