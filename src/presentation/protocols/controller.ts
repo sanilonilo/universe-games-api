@@ -1,3 +1,5 @@
+import {HttpRequest,HttpResponse} from './'
+
 export interface Controller{
-    action:(httpRequest:any) => Promise<any>
+    action:(httpRequest:HttpRequest) => Promise<HttpResponse>
 }

@@ -1,10 +1,9 @@
-import {Controller} from '../../../protocols'
+import {Controller,HttpRequest,HttpResponse} from '../../../protocols'
+import {MissingParamError} from '../../../errors'
+import {BadRequest} from '../../../errors/helpers'
 
 export class SignupController implements Controller{
-    async action(httpRequest:any): any{
-        return {
-            status: 400,
-            body: new Error('missing param name')
-        }
+    async action(httpRequest:HttpRequest): Promise<HttpResponse>{
+        return BadRequest(new MissingParamError('name'))
     }
 }
