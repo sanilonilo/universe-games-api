@@ -3,7 +3,7 @@
 
 - Instale as dependências de desenvolvimento:
     - Typescript
-    - Viteste para testes
+    - Vitest para testes
     ```shell
     npm install -D typescript @types/node
     npm install -D vistest
