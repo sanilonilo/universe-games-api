@@ -9,6 +9,6 @@ export class DbSignup implements CreateUserUseCase{
 
     async create(dto: UserDTO.DataEntry.Create){
         const hashedPassword = await this.encrypter.encrypter(dto.password)
-        return await this.createUserRepository.create(dto)
+        return await this.createUserRepository.create(Object.assign({},dto,{password:hashedPassword}))
     }
 }
