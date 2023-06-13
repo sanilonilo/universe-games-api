@@ -65,4 +65,20 @@ describe('SignupController', () => {
         expect(status).toBe(400)
         expect(body).toEqual(new MissingParamError('confirm_password'))
     })
+
+    test('Params password and confirm_password no confer: bad request status 400',async () => {
+        const sut = new SignupController()
+        const httpRequest = {
+            body:{
+                name:'name_test',
+                email:'email@test',
+                password:'password_test',
+                confirm_password: 'password_test_incorrect'
+            }
+        }
+        const {body,status} = await sut.action(httpRequest)
+
+        expect(status).toBe(400)
+        expect(body).toEqual(new Error('Password and password confirmation do not confer'))
+    })
 })
