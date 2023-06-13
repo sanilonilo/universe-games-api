@@ -1,5 +1,5 @@
 import {SignupController} from './signup-controller'
-import {MissingParamError} from '../../../errors'
+import {MissingParamError,InvalidParamError} from '../../../errors'
 import {EmailValidator} from '../../../protocols'
 
 class EmailValidatorFake implements EmailValidator{
@@ -113,6 +113,6 @@ describe('SignupController', () => {
         const {body,status} = await sut.action(httpRequest)
 
         expect(status).toBe(400)
-        expect(body).toEqual(new Error('Invalid param email'))
+        expect(body).toEqual(new InvalidParamError('email'))
     })
 })
