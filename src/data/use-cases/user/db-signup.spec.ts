@@ -1,5 +1,7 @@
 import {DbSignup} from './'
 import {Encrypter} from '../../protocols'
+import {UserRepository} from '../../repositories'
+import { UserDTO } from '../../../domain/use-cases/DTOs'
 
 class EncryptationStub implements Encrypter{
     async encrypter(value: string) {
@@ -7,12 +9,24 @@ class EncryptationStub implements Encrypter{
     }
 }
 
+class CreateUserRepositoryStub implements UserRepository.CreateUser{
+    async create(dto: UserDTO.DataEntry.Create){
+        return new Promise<UserDTO.DataOutput.Read>(resolve => resolve({
+            id: 1,
+            name:'name_test',
+            email:'email@test'
+        }))
+    }
+}
+
 const makeSut = () => {
+    const createUserRepository = new CreateUserRepositoryStub()
     const encryptationStub = new EncryptationStub()
-    const sut = new DbSignup(encryptationStub)
+    const sut = new DbSignup(encryptationStub,createUserRepository)
     return {
         sut,
-        encryptationStub
+        encryptationStub,
+        createUserRepository
     }
 }
 
@@ -49,5 +63,22 @@ describe('DbSignup', () => {
         
         await sut.create(data)
         expect(encryptationStub.encrypter).toReturnWith('hashed_password')
+    })
+
+    test('CreateUserRepository: success', async () => {
+        const {sut} = makeSut()
+
+        const data = {
+            name:'name_test',
+            email:'email@test',
+            password:'password_test'
+        }
+        
+        const response = await sut.create(data)
+        expect(response).toEqual({
+            id:1,
+            name:'name_test',
+            email:'email@test'
+        })
     })
 })
