@@ -25,7 +25,11 @@ export class SignupController implements Controller {
 
             if (!isValidEmail) return BadRequest(new InvalidParamError('email'))
 
-            const response = await this.createUserUseCase.create(httpRequest.body)
+            const response = await this.createUserUseCase.create({
+                name:httpRequest.body.name,
+                email:httpRequest.body.email,
+                password:httpRequest.body.password
+            })
 
             return {
                 body: response,
