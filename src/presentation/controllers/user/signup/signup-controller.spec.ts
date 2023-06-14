@@ -130,6 +130,25 @@ describe('SignupController', () => {
         expect(body).toEqual(new InvalidParamError('email'))
     })
 
+    test('Error server: bad request status 500',async () => {
+        const {sut,createUserUseCase} = makeSut()
+        vi.spyOn(createUserUseCase,'create').mockReturnValueOnce(new Promise((_,reject) => reject(new Error())))
+        
+        const httpRequest = {
+            body:{
+                name:'name_test',
+                email:'email@test',
+                password:'password_test',
+                confirm_password: 'password_test'
+            }
+        }
+
+        const {body,status} = await sut.action(httpRequest)
+        
+        expect(status).toBe(500)
+        expect(body).toBe('Server error')
+    })
+
     test('Created user: success status 200',async () => {
         const {sut,emailValidator} = makeSut()
         const httpRequest = {
