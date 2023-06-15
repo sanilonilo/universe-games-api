@@ -1,0 +1,1 @@
+export const SECRET_KEY='&%ff_138çlx1+.1'

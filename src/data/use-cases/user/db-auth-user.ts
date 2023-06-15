@@ -3,7 +3,7 @@ import {AuthUserUseCase} from '../../../domain/use-cases/user'
 import {CompareEncryptHash,EncodeTokenJWT} from '../../protocols'
 import {UserRepository} from '../../repositories'
 
-const env = require('../../../../.env')
+import {SECRET_KEY} from '../../../../env'
 
 export class DbAuthUser implements AuthUserUseCase{
 
@@ -32,7 +32,7 @@ export class DbAuthUser implements AuthUserUseCase{
             exp: now + (60 * 60 * 24)
         }
 
-        const token = await this.encodeToken.encode(payload,env.SECRET_KEY)
+        const token = await this.encodeToken.encode(payload,SECRET_KEY)
 
         return {
             name:userDB.name,
