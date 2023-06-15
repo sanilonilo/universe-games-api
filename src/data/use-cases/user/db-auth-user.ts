@@ -1,23 +1,43 @@
 import { UserDTO } from '../../../domain/use-cases/DTOs';
 import {AuthUserUseCase} from '../../../domain/use-cases/user'
-import {CompareEncryptHash} from '../../protocols'
+import {CompareEncryptHash,EncodeTokenJWT} from '../../protocols'
 import {UserRepository} from '../../repositories'
+
+const env = require('../../../../.env')
 
 export class DbAuthUser implements AuthUserUseCase{
 
     constructor(
         public compareEncryptHash:CompareEncryptHash,
-        public authUserRepository: UserRepository.AuthUser
+        public authUserRepository: UserRepository.AuthUser,
+        public encodeToken:EncodeTokenJWT
     ){}
 
     async auth(dto: UserDTO.DataEntry.Auth):Promise<UserDTO.DataOutput.Authenticated>{
         const userDB = await this.authUserRepository.auth(dto)
+
+        if(!userDB) return null 
+
         const isMatchPassword = await this.compareEncryptHash.compare(dto.password,userDB.password)
 
+        if(!isMatchPassword) return {email:null,name:null,token:null}
+
+        const now = Math.floor(Date.now() / 1000)
+
+        const payload = {
+            id: userDB.id,
+            name: userDB.name,
+            email: userDB.email,
+            iat: now,
+            exp: now + (60 * 60 * 24)
+        }
+
+        const token = await this.encodeToken.encode(payload,env.SECRET_KEY)
+
         return {
-            email:'name_test',
-            name:'name_test',
-            token:'token_test'
+            name:userDB.name,
+            email:userDB.email,
+            token
         }
     }
 
