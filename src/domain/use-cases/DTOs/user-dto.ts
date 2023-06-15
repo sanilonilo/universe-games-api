@@ -7,7 +7,7 @@ export namespace UserDTO{
             password: string
         }
         
-        export interface Signin{
+        export interface Auth{
             email: string
             password: string
         }
