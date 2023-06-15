@@ -1,7 +1,13 @@
-import {CompareEncryptHash} from '../../protocols'
+import {CompareEncryptHash,EncodeTokenJWT} from '../../protocols'
 import {DbAuthUser} from './'
 import {UserRepository} from '../../repositories'
 import { UserDTO } from '../../../domain/use-cases/DTOs'
+
+class EncodeTokenStub implements EncodeTokenJWT{
+    encode(payload: any, secretKey: string):Promise<string>{
+        return new Promise(resolve => resolve('encoded_token'))
+    }
+}
 
 class CompareEncryptHashStub implements CompareEncryptHash{
     compare(value: string, valueHashed: string):Promise<boolean>{
@@ -14,24 +20,42 @@ class AuthUserRepositoryStub implements UserRepository.AuthUser{
         return new Promise(resolve => resolve({
             id:1,
             name:'name_test',
-            email:'email_test',
-            password:'password_test'
+            email:'email@test',
+            password:'hashed_password'
         }))
     }   
 }
 
 const makeSut = () => {
+    const encodeToken = new EncodeTokenStub()
     const compareEncryptHashStub = new CompareEncryptHashStub()
     const authUserRepositoryStub = new AuthUserRepositoryStub()
-    const sut = new DbAuthUser(compareEncryptHashStub,authUserRepositoryStub)
+    const sut = new DbAuthUser(compareEncryptHashStub,authUserRepositoryStub,encodeToken)
     return {
         sut,
         compareEncryptHashStub,
-        authUserRepositoryStub
+        authUserRepositoryStub,
+        encodeToken
     }
 }
 
 describe('DbAuthUser',() => {
+
+    test('User not found: return null', async () => {
+        const {sut,authUserRepositoryStub} = makeSut()
+        
+        vi.spyOn(authUserRepositoryStub,'auth').mockResolvedValueOnce(null)
+
+        const data = {
+            email: 'email@test',
+            password:'password_test'
+        }
+
+        const response = await sut.auth(data)
+
+        expect(response).toEqual(null)
+    })
+
     test('Compare hash: throw error', async () => {
         const {sut,compareEncryptHashStub} = makeSut()
         vi.spyOn(compareEncryptHashStub,'compare').mockReturnValueOnce(new Promise((_,reject) => reject(new Error())))
@@ -39,17 +63,10 @@ describe('DbAuthUser',() => {
         await expect(compareEncryptHashStub.compare).rejects.toThrow()
     })
 
-    test('Compare hash: Password and password confirmation passed as parameter', async () => {
+    test('Compare hash: Password and password hashed passed as parameter', async () => {
         const {sut,compareEncryptHashStub,authUserRepositoryStub} = makeSut()
         const hashedPassword = 'hashed_password'
        
-        vi.spyOn(authUserRepositoryStub,'auth').mockReturnValueOnce(new Promise(resolve => resolve({
-            id:1,
-            name:'name_test',
-            email:'email@test',
-            password:hashedPassword
-        })))
-
         const compareEncryptSpy = vi.spyOn(compareEncryptHashStub,'compare')
         const data = {
             email: 'email@test',
@@ -57,5 +74,47 @@ describe('DbAuthUser',() => {
         }
         await sut.auth(data)
         expect(compareEncryptHashStub.compare).toBeCalledWith(data.password,hashedPassword)
+    })
+
+    test('Compare hash: Password and password hashed no match', async () => {
+        const {sut,compareEncryptHashStub} = makeSut()
+
+        vi.spyOn(compareEncryptHashStub,'compare').mockResolvedValueOnce(false)
+
+        const data = {
+            email: 'email@test',
+            password:'password_test'
+        }
+
+        const response = await sut.auth(data)
+        expect(response).toEqual({
+            name:null,
+            email:null,
+            token:null
+        })
+    })
+
+    test('Generate token: throw error', async () => {
+        const {sut,compareEncryptHashStub,encodeToken} = makeSut()
+
+        vi.spyOn(encodeToken,'encode').mockReturnValueOnce(new Promise((_,reject) => reject(new Error())))
+
+        await expect(encodeToken.encode).rejects.toThrow()
+    })
+
+    test('Success auth and generate token: success', async () => {
+        const {sut} = makeSut()
+        const data = {
+            email:'email@test',
+            password:'password_test'
+        }
+
+        const response = await sut.auth(data)
+        
+        expect(response).toEqual({
+            name:'name_test',
+            email:'email@test',
+            token:'encoded_token'
+        })
     })
 })
