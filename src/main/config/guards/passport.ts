@@ -1,6 +1,7 @@
 import passport from 'passport'
 import {ExtractJwt,Strategy,StrategyOptions} from 'passport-jwt'
 import {SECRET_KEY} from '../../../../env'
+import {validateToken} from '../utils/validate-token'
 
 export default () => {
     const options:StrategyOptions = {
@@ -8,8 +9,13 @@ export default () => {
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
     }
 
-    const stratrgy = new Strategy(options, 
-                (payload,done) => payload.id ? done(null,payload) : done(null,false))
+    const stratrgy = new Strategy(options, (payload,done) => {
+                    if(!payload.id) {
+                        done(null,false)
+                        return
+                    }
+                    done(null,validateToken(payload.exp))
+                })
     
     passport.use(stratrgy)
 

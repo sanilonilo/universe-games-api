@@ -1,0 +1,1 @@
+export const validateToken = (exp:number) => (new Date(exp * 1000)) > (new Date())
