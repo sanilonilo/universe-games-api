@@ -1,5 +1,5 @@
-import {UserDTO} from '../DTOs'
+import {User} from '../../entities'
 
 export interface CreateUserUseCase{
-    create:(dto: UserDTO.DataEntry.Create) => Promise<UserDTO.DataOutput.Read>
+    create:(dto: User) => Promise<Pick<User,'name' | 'email'>>
 }

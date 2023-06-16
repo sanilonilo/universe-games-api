@@ -1,5 +1,5 @@
 import {UserRepository} from '../../../../../data/repositories'
-import { UserDTO } from '../../../../../domain/use-cases/DTOs';
+import { UserDTO } from '../../../../../data/DTOs';
 import {database} from '../../knex/database'
 
 export class CreateUserPostgresRepository implements UserRepository.CreateUser{

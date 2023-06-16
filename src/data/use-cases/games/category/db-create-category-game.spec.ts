@@ -1,6 +1,6 @@
 import {DbCreateCategoryGame} from './'
 import {GameRepository} from '../../../repositories'
-import { GameDTO } from '../../../../domain/use-cases/DTOs'
+import { GameDTO } from '../../../DTOs'
 
 class CreateCategoryGameRepositoryStub implements GameRepository.Category.CreateCategory{
     async create(dto: GameDTO.DataEntry.Category.Create):Promise<GameDTO.DataOutput.Category.Read>{

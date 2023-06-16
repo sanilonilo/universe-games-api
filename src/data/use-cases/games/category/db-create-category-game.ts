@@ -1,4 +1,4 @@
-import { GameDTO } from '../../../../domain/use-cases/DTOs';
+import { GameDTO } from '../../../DTOs';
 import {CreateCategoryGameUseCase} from '../../../../domain/use-cases/games/category'
 import {GameRepository} from '../../../repositories'
 

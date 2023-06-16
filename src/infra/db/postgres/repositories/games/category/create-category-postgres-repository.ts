@@ -1,5 +1,5 @@
 import {GameRepository} from '../../../../../../data/repositories'
-import { GameDTO } from '../../../../../../domain/use-cases/DTOs';
+import { GameDTO } from '../../../../../../data/DTOs';
 import {database} from '../../../knex/database'
 
 export class CreateCategoryPostgresRepository implements GameRepository.Category.CreateCategory{

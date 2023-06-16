@@ -1,7 +1,7 @@
 import {CompareEncryptHash,EncodeTokenJWT} from '../../protocols'
 import {DbAuthUser} from './'
 import {UserRepository} from '../../repositories'
-import { UserDTO } from '../../../domain/use-cases/DTOs'
+import { UserDTO } from '../../DTOs'
 
 class EncodeTokenStub implements EncodeTokenJWT{
     encode(payload: any, secretKey: string):Promise<string>{

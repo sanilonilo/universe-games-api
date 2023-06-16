@@ -1,5 +1,5 @@
-import {UserDTO} from '../DTOs'
+import {User} from '../../entities'
 
 export interface AuthUserUseCase{
-    auth:(dto: UserDTO.DataEntry.Auth) => Promise<UserDTO.DataOutput.Authenticated | null>
+    auth:(dto: Pick<User,'email' | 'password'>) => Promise<Pick<User,'name' | 'email'>>
 }

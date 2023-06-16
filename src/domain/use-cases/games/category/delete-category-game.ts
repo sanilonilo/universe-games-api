@@ -1,5 +1,5 @@
-import {GameDTO} from '../../DTOs'
+import {Category} from '../../../entities'
 
 export interface DeleteCategoryGameUseCase{
-    delete:(dto:GameDTO.DataEntry.Category.Delete) => Promise<any>
+    delete:(dto:Category) => Promise<any>
 }

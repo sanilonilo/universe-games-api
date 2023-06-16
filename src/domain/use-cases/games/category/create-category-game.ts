@@ -1,5 +1,5 @@
-import {GameDTO} from '../../DTOs'
+import {Category} from '../../../entities'
 
 export interface CreateCategoryGameUseCase{
-    create:(dto:GameDTO.DataEntry.Category.Create) => Promise<GameDTO.DataOutput.Category.Read>
+    create:(dto:Category) => Promise<Pick<Category,'name'>>
 }

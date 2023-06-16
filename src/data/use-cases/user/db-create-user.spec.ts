@@ -1,7 +1,7 @@
 import {DbCreateUser} from '.'
 import {Encrypter} from '../../protocols'
 import {UserRepository} from '../../repositories'
-import { UserDTO } from '../../../domain/use-cases/DTOs'
+import { UserDTO } from '../../DTOs'
 
 class EncryptationStub implements Encrypter{
     async encrypter(value: string) {

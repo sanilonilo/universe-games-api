@@ -1,4 +1,4 @@
-import {Category} from '../../entities'
+import {Category} from '../../domain/entities'
 
 export namespace GameDTO{
     export namespace DataEntry{

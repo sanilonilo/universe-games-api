@@ -1,4 +1,4 @@
-import { UserDTO } from '../../../domain/use-cases/DTOs';
+import { UserDTO } from '../../DTOs';
 import {CreateUserUseCase} from '../../../domain/use-cases/user'
 import {Encrypter} from '../../protocols'
 import {UserRepository} from '../../repositories'

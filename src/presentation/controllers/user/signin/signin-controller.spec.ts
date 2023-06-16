@@ -1,7 +1,7 @@
 import {MissingParamError} from '../../../errors'
 import {SigninController} from './signin-controller'
 import {AuthUserUseCase} from '../../../../domain/use-cases/user'
-import { UserDTO } from '../../../../domain/use-cases/DTOs'
+import { UserDTO } from '../../../../data/DTOs'
 
 class AuthUserUseCaseStub implements AuthUserUseCase{
     async auth(dto: UserDTO.DataEntry.Auth):Promise<UserDTO.DataOutput.Authenticated>{

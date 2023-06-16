@@ -1,4 +1,4 @@
-import {GameDTO} from '../../domain/use-cases/DTOs'
+import {GameDTO} from '../DTOs'
 
 export namespace GameRepository{
     export namespace Category{

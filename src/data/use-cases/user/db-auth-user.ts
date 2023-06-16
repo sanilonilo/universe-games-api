@@ -1,4 +1,4 @@
-import { UserDTO } from '../../../domain/use-cases/DTOs';
+import { UserDTO } from '../../DTOs';
 import {AuthUserUseCase} from '../../../domain/use-cases/user'
 import {CompareEncryptHash,EncodeTokenJWT} from '../../protocols'
 import {UserRepository} from '../../repositories'

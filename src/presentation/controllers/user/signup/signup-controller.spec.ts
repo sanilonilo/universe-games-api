@@ -2,7 +2,7 @@ import {SignupController} from './signup-controller'
 import {MissingParamError,InvalidParamError} from '../../../errors'
 import {EmailValidator} from '../../../protocols'
 import {CreateUserUseCase} from '../../../../domain/use-cases/user'
-import { UserDTO } from '../../../../domain/use-cases/DTOs'
+import { UserDTO } from '../../../../data/DTOs'
 
 class CreateUserUseCaseFake implements CreateUserUseCase{
     async create(dto: UserDTO.DataEntry.Create):Promise<UserDTO.DataOutput.Read>{

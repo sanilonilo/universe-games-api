@@ -1,4 +1,4 @@
-import {UserDTO} from '../../domain/use-cases/DTOs'
+import {UserDTO} from '../DTOs'
 
 export namespace UserRepository{
     export interface CreateUser{
