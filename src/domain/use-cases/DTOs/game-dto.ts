@@ -1,3 +1,5 @@
+import {Category} from '../../entities'
+
 export namespace GameDTO{
     export namespace DataEntry{
         export namespace Category{
@@ -5,9 +7,7 @@ export namespace GameDTO{
                 id: any
             }
     
-            export interface Create{
-                name: string
-            }
+            export interface Create extends Category{}
     
             export interface Update{
                 id: any
