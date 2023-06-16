@@ -9,7 +9,7 @@ export default () => {
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
     }
 
-    const stratrgy = new Strategy(options, (payload,done) => {
+    const strategy = new Strategy(options, (payload,done) => {
                     if(!payload.id) {
                         done(null,false)
                         return
@@ -17,7 +17,9 @@ export default () => {
                     done(null,validateToken(payload.exp))
                 })
     
-    passport.use(stratrgy)
+    passport.use(strategy)
+    passport.serializeUser((user, done) => done(null, user))
+    passport.deserializeUser((_, done) => done(null, true))
 
     return {
         authenticate: () => passport.authenticate('jwt',{session:true})
