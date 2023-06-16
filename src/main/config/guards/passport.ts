@@ -10,16 +10,16 @@ export default () => {
     }
 
     const strategy = new Strategy(options, (payload,done) => {
-                    if(!payload.id) {
+                    if(!payload?.id || !validateToken(payload.exp)) {
                         done(null,false)
                         return
                     }
-                    done(null,validateToken(payload.exp))
+                    done(null,payload)
                 })
     
     passport.use(strategy)
     passport.serializeUser((user, done) => done(null, user))
-    passport.deserializeUser((_, done) => done(null, true))
+    passport.deserializeUser((user, done) => done(null, user))
 
     return {
         authenticate: () => passport.authenticate('jwt',{session:true})
