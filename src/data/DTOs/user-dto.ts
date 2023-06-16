@@ -1,9 +1,12 @@
-import {User} from '../../domain/entities'
 
 export namespace UserDTO{
     
     export namespace DataEntry{
-        export interface Create extends User{}
+        export interface Create{
+            name: string
+            email: string
+            password: string
+        }
         
         export interface Auth{
             email: string
