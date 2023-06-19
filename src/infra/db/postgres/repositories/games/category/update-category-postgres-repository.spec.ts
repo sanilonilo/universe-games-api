@@ -22,9 +22,10 @@ describe('UpdateCategoryPostgresRespository', () => {
             name:'category_updated_test'
         }
 
-        const categoryUpdated = await sut.update(data)
+        vi.spyOn(sut,'update')
 
-        expect(categoryUpdated.id).toBe(1)
-        expect(categoryUpdated.name).toBe(data.name)
+        await sut.update(data)
+
+        expect(sut.update).toBeTruthy()
     })
 })

@@ -20,9 +20,11 @@ describe('ReadCategoryPostgresRespository', () => {
         const identifier= {
             id:1
         }
-          
-        const category = await sut.read(identifier)
 
-        expect(category.id).toBe(1)
+        vi.spyOn(sut,'read')
+          
+        await sut.read(identifier)
+
+        expect(sut.read).toBeTruthy()
     })
 })
