@@ -6,6 +6,10 @@ export namespace GameRepository{
             read:(dto: GameDTO.DataEntry.Category.Read) => Promise<GameDTO.DataOutput.Category.Read>
         }
 
+        export interface ReadAllCategory{
+            readAll:() => Promise<GameDTO.DataOutput.Category.Read[]>
+        }
+
         export interface CreateCategory{
             create:(dto: GameDTO.DataEntry.Category.Create) => Promise<GameDTO.DataOutput.Category.Read>
         }
