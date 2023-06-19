@@ -5,7 +5,6 @@ import {database} from '../../../knex/database'
 export class ReadAllCategoryPostgresRespository implements GameRepository.Category.ReadAllCategory{
     async readAll():Promise<GameDTO.DataOutput.Category.Read[]>{
         const categoriesDB = await database.table('game-categories').select<GameDTO.DataOutput.Category.Read[]>('*')
-        console.log(categoriesDB)
         return categoriesDB
     }
 }
