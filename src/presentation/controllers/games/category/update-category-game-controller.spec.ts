@@ -67,7 +67,7 @@ describe('UpdateCategoryGameController', async () => {
         expect(body).toBe('Server error')
     })
 
-    test('Updated category: success return status 200', async () => {
+    test('Update category: success return status 200', async () => {
         const {sut} = makeSut()
         const httpRequest = {
             body:{
