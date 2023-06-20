@@ -1,13 +1,13 @@
-import {UpdateCategoryPostgresRespository} from './'
+import {UpdateCategoryPostgresRepository} from './'
 
 const makeSut = () => {
-    const sut = new UpdateCategoryPostgresRespository()
+    const sut = new UpdateCategoryPostgresRepository()
     return {
         sut
     }
 }
 
-describe('UpdateCategoryPostgresRespository', () => {
+describe('UpdateCategoryPostgresRepository', () => {
     test('Update category: update data error', async () => {
         const {sut} = makeSut()
         vi.spyOn(sut,'update').mockRejectedValueOnce(new Error())

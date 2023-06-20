@@ -1,13 +1,13 @@
-import {ReadAllCategoryPostgresRespository} from './'
+import {ReadAllCategoryPostgresRepository} from './'
 
 const makeSut = () => {
-    const sut = new ReadAllCategoryPostgresRespository()
+    const sut = new ReadAllCategoryPostgresRepository()
     return {
         sut
     }
 }
 
-describe('ReadAllCategoryPostgresRespository', () => {
+describe('ReadAllCategoryPostgresRepository', () => {
     test('Read all category: read all data error', async () => {
         const {sut} = makeSut()
         vi.spyOn(sut,'readAll').mockRejectedValueOnce(new Error())

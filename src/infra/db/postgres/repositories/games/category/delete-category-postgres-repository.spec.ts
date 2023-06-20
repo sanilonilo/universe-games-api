@@ -1,13 +1,13 @@
-import {DeleteCategoryPostgresRespository} from './'
+import {DeleteCategoryPostgresRepository} from './'
 
 const makeSut = () => {
-    const sut = new DeleteCategoryPostgresRespository()
+    const sut = new DeleteCategoryPostgresRepository()
     return {
         sut
     }
 }
 
-describe('DeleteCategoryPostgresRespository', () => {
+describe('DeleteCategoryPostgresRepository', () => {
     test('Delete category: delete data error', async () => {
         const {sut} = makeSut()
         vi.spyOn(sut,'delete').mockRejectedValueOnce(new Error())
