@@ -1,5 +1,5 @@
 import {Game} from '../../../entities'
 
 export interface ReadAllGameUsecase{
-    readAll: () => Promise<Game[]>
+    readAll: (options:any) => Promise<Game[]>
 }
