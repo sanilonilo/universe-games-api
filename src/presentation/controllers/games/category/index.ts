@@ -1,1 +1,5 @@
 export * from './create-category-game-controller'
+export * from './update-category-game-controller'
+export * from './read-category-game-controller'
+export * from './delete-category-game-controller'
+export * from './read-all-category-game-controller'
