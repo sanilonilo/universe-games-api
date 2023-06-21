@@ -1,5 +1,5 @@
 import {Game} from '../../../entities'
 
-export interface ReadGameUsecase{
+export interface ReadGameUseCase{
     read: (identifier:any) => Promise<Game>
 }

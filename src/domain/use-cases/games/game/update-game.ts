@@ -1,5 +1,5 @@
 import {Game} from '../../../entities'
 
-export interface UpdateGameUsecase{
+export interface UpdateGameUseCase{
     update: (dto:Game) => Promise<Game>
 }
