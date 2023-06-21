@@ -99,4 +99,22 @@ describe('CreateGameController', () => {
         expect(status).toBe(500)
         expect(body).toEqual('Server error')
     })
+
+    test('Create game: success return status 200', async () => {
+        const {sut} = makeSut()
+        const httpRequest = {
+            body:{
+                name:'name_test',
+                description:'description_test',
+                image_url:'image_test',
+                trailer_url:'trailer_test',
+                category_id:null
+            }
+        }
+
+        const {status,body} = await sut.action(httpRequest)
+
+        expect(status).toBe(200)
+        expect(!!body.id).toBe(true)
+    })
 })
