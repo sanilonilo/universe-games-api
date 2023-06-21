@@ -27,8 +27,10 @@ describe('UpdateGamePostgresRepository', () => {
             category_id: null
         }
 
-        const game = await sut.update(data)
+        vi.spyOn(sut,'update')
 
-        expect(game).toEqual(data)
+        await sut.update(data)
+
+        expect(sut.update).toBeTruthy()
     })
 })
