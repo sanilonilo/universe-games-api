@@ -1,4 +1,4 @@
-import {DbDeleteGame} from './db-delete-game'
+import {DbDeleteGame} from './'
 import {GameRepository} from '../../../repositories'
 
 class DeleteGameRepositoryStub implements GameRepository.Game.DeleteGame{

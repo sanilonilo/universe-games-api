@@ -1,4 +1,4 @@
-import {DbCreateGame} from './db-create-game'
+import {DbCreateGame} from './'
 import {GameRepository} from '../../../repositories'
 import { GameDTO } from '../../../DTOs'
 
