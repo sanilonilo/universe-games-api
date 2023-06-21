@@ -12,7 +12,8 @@ class ReadAllGameRepositoryStub implements GameRepository.Game.ReadAllGame{
                 name:'name_test',
                 description:'description_test',
                 image_url:'image_test',
-                trailer_url:'trailer_test'
+                trailer_url:'trailer_test',
+                category_id:1
             }]
         }))
     }
@@ -51,7 +52,8 @@ describe('DbReadAllGame', () => {
                 name:'name_test',
                 description:'description_test',
                 image_url:'image_test',
-                trailer_url:'trailer_test'
+                trailer_url:'trailer_test',
+                category_id:1
             }]
         })
     })

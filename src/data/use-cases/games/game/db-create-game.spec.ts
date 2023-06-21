@@ -9,7 +9,8 @@ class CreateGameRepositoryStub implements GameRepository.Game.CreateGame{
             name:'name_test',
             description:'description_test',
             image_url:'image_test',
-            trailer_url:'trailer_test'
+            trailer_url:'trailer_test',
+            category_id:1
         }))
     }
 }
@@ -38,7 +39,8 @@ describe('DbCreateGame', () => {
             name:'name_test',
             description:'description_test',
             image_url:'image_test',
-            trailer_url:'trailer_test'
+            trailer_url:'trailer_test',
+            category_id:1
         }
         
         const game = await sut.create(data)
@@ -48,7 +50,8 @@ describe('DbCreateGame', () => {
             name:'name_test',
             description:'description_test',
             image_url:'image_test',
-            trailer_url:'trailer_test'
+            trailer_url:'trailer_test',
+            category_id:data.category_id
         })
     })
 })

@@ -9,7 +9,8 @@ class UpdateGameRepositoryStub implements GameRepository.Game.UpdateGame{
             name:'name_updated_test',
             description:'description_updated_test',
             image_url:'image_updated_test',
-            trailer_url:'trailer_updated_test'
+            trailer_url:'trailer_updated_test',
+            category_id:1
         }))
     }
 }
@@ -38,7 +39,8 @@ describe('DbUpdateGame', () => {
             name:'name_test',
             description:'description_test',
             image_url:'image_test',
-            trailer_url:'trailer_test'
+            trailer_url:'trailer_test',
+            category_id:1
         }
         
         const game = await sut.update(data)
@@ -48,7 +50,8 @@ describe('DbUpdateGame', () => {
             name:'name_updated_test',
             description:'description_updated_test',
             image_url:'image_updated_test',
-            trailer_url:'trailer_updated_test'
+            trailer_url:'trailer_updated_test',
+            category_id:data.category_id
         })
     })
 })
