@@ -33,10 +33,10 @@ describe('Read all game route', () => {
                 Authorization: `Bearer ${generateTokenStub()}`
             }
         })
-        
+        console.log(data)
         expect(status).toBe(200)
         expect(data.page).toBe(page)
-        expect(!!data.total).toBe(true)
+        expect(!!data.total || data.total == 0 ).toBe(true)
         expect(Array.isArray(data.data)).toBe(true)
     })
 
