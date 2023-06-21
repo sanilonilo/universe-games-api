@@ -34,6 +34,7 @@ export namespace GameDTO{
                 description: string
                 image_url: string
                 trailer_url: string
+                category_id: any
             }
     
             export interface Update{
@@ -42,6 +43,7 @@ export namespace GameDTO{
                 description: string
                 image_url: string
                 trailer_url: string
+                category_id: any
             }
     
             export interface Delete{
@@ -65,6 +67,7 @@ export namespace GameDTO{
                 description: string
                 image_url: string
                 trailer_url: string
+                category_id: any
             }
 
             export interface ReadAll{
