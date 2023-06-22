@@ -21,7 +21,8 @@ class AuthUserRepositoryStub implements UserRepository.AuthUser{
             id:1,
             name:'name_test',
             email:'email@test',
-            password:'hashed_password'
+            password:'hashed_password',
+            role:'client'
         }))
     }   
 }
