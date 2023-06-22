@@ -10,8 +10,8 @@ const generateTokenStub = () => {
 
     const payload = {
         id: 1,
-        name: 'name_test',
-        email: 'email@test',
+        name: 'name_test_seed',
+        email: 'email@test.seed',
         admin:true,
         iat: now,
         exp: now + (60 * 60 * 24)
