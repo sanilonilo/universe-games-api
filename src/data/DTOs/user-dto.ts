@@ -20,6 +20,7 @@ export namespace UserDTO{
             name: string
             email: string
             password: string
+            role: string
         }
 
         export interface Authenticated{

@@ -6,7 +6,7 @@ export class AuthUserPostgresRepository implements UserRepository.AuthUser{
     async auth(dto: UserDTO.DataEntry.Auth): Promise<UserDTO.DataOutput.ToAuth>{
         const userDB = await database
                         .table('users')
-                        .select('id','name','email','password')
+                        .select('id','name','email','password','role')
                         .where({email:dto.email})
                         .first()
        

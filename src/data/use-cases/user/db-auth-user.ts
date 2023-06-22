@@ -28,6 +28,7 @@ export class DbAuthUser implements AuthUserUseCase{
             id: userDB.id,
             name: userDB.name,
             email: userDB.email,
+            admin: userDB.role === 'admin',
             iat: now,
             exp: now + (60 * 60 * 24)
         }

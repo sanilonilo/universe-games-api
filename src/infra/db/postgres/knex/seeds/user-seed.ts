@@ -8,7 +8,8 @@ export const seed =  (knex:Knex) => {
                 id:1,
                 name:'name_test_seed',
                 email:'email@test.seed',
-                password:'password_test_seed'
+                password:'password_test_seed',
+                role: 'admin'
             }
         ])
     })
