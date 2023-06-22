@@ -6,7 +6,8 @@ services:
     restart: always
     build: .
     container_name: "api-universe-game"
-    command: npm start
+    command: 
+      sh ./start.sh
     ports:
       - '3220:3220'
     volumes:

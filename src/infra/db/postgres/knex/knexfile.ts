@@ -6,6 +6,7 @@
 const config = {
   client: 'postgresql',
   connection: {
+    host:'database',
     database: 'postgres',
     user: 'postgres',
     password: 'postgres',
