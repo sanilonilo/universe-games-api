@@ -1,6 +1,18 @@
 version: '3.8'
 
 services:
+  api:
+    image: api
+    restart: always
+    build: .
+    container_name: "api-universe-game"
+    command: npm start
+    ports:
+      - '3220:3220'
+    volumes:
+      - ./dist:/usr/src/api/dist  
+    links:
+      - database  
   database:
     image: postgres:14.1-alpine
     environment:
