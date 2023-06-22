@@ -10,7 +10,7 @@ export const seed =  (knex:Knex) => {
                 description:'description_test_seed',
                 image_url:'image_test_seed',
                 trailer_url:'trailer_test_seed',
-                category_id: null
+                category_id: 1
             }
         ])
     })
