@@ -3,10 +3,13 @@
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
+
+const host: string = process.env?.DB_HOST.toString().trim() || 'localhost'
+
 const config = {
   client: 'postgresql',
   connection: {
-    host:'database',
+    host,
     database: 'postgres',
     user: 'postgres',
     password: 'postgres',

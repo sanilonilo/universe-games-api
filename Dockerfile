@@ -4,6 +4,10 @@ WORKDIR /usr/src/api
 
 COPY ./package.json .
 
-COPY ./start.sh .
+COPY ./.env .
+
+COPY ./.env.dev .
+
+COPY ./config.sh .
 
 RUN npm install --only=prod
