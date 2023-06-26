@@ -50,7 +50,8 @@ describe('AuthUserPostgresRepository',() => {
             id:1,
             email:'email@test',
             name:'name_test',
-            password:'hashed_test'
+            password:'hashed_test',
+            role:'client'
         })
     })
 })
