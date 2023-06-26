@@ -15,7 +15,7 @@ services:
     build: .
     container_name: "api-universe-game"
     command: 
-      sh config.sh dev
+      sh config.sh prod
     ports:
       - '3220:3220'
     volumes:
