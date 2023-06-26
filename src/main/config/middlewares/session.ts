@@ -1,5 +1,7 @@
 import Session from 'express-session'
-import {SECRET_KEY} from '../../../../env'
+
+const SECRET_KEY = process.env?.SECRET_KEY.toString().trim()
+
 
 export const session = Session({
     secret:SECRET_KEY

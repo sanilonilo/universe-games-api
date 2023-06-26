@@ -1,6 +1,8 @@
 import passport from 'passport'
 import {ExtractJwt,Strategy,StrategyOptions} from 'passport-jwt'
-import {SECRET_KEY} from '../../../../env'
+
+const SECRET_KEY = process.env?.SECRET_KEY.toString().trim()
+
 import {validateToken} from '../utils/validate-token'
 
 export default () => {

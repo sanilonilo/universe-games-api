@@ -3,7 +3,7 @@ import {AuthUserUseCase} from '../../../domain/use-cases/user'
 import {CompareEncryptHash,EncodeTokenJWT} from '../../protocols'
 import {UserRepository} from '../../repositories'
 
-import {SECRET_KEY} from '../../../../env'
+const SECRET_KEY = process.env?.SECRET_KEY.toString().trim()
 
 export class DbAuthUser implements AuthUserUseCase{
 
