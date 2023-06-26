@@ -4,16 +4,15 @@
  * @type { Object.<string, import("knex").Knex.Config> }
  */
 
-const host: string = process.env?.DB_HOST.toString().trim() || 'localhost'
 
 const config = {
   client: 'postgresql',
   connection: {
-    host,
-    database: 'postgres',
-    user: 'postgres',
-    password: 'postgres',
-    port: 5432
+    host: process.env?.DB_HOST.toString().trim() || 'localhost',
+    database: process.env?.DB.toString().trim() || 'postgres',
+    user: process.env?.DB_USER.toString().trim() || 'postgres',
+    password: process.env?.DB_PASSWORD.toString().trim() || 'postgres',
+    port: process.env?.DB_PORT || 5432
   },
   pool: {
     min: 2,
