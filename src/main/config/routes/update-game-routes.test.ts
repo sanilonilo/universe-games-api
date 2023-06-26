@@ -1,6 +1,8 @@
 import axios from 'axios'
 import jwt from 'jwt-simple'
-import {SECRET_KEY} from '../../../../env'
+
+const SECRET_KEY = process.env?.SECRET_KEY.toString().trim()
+
 
 const baseURL = 'http://localhost:3220/api'
 const getEndpoint = (url: string) => `${baseURL}/${url}`
