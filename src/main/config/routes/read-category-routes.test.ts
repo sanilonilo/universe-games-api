@@ -4,7 +4,7 @@ import jwt from 'jwt-simple'
 const SECRET_KEY = process.env?.SECRET_KEY.toString().trim()
 
 
-const baseURL = 'http://localhost:3220/api'
+const baseURL = `http://localhost:${process.env.PORT || 3333}/api`
 const getEndpoint = (url: string) => `${baseURL}/${url}`
 
 const generateTokenStub = () => {

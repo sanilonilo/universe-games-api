@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const emaitGenerateFactory = () => `email${Math.random() * 10}@gmail.com`
-const baseURL = 'http://localhost:3220/api'
+const baseURL = `http://localhost:${process.env.PORT || 3333}/api`
 const getEndpoint = (url:string) => `${baseURL}/${url}`
 
 describe('Signup route', () => {
