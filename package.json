@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "cd dist/src/infra/db/postgres/knex && npx knex migrate:latest && npx knex seed:run && cd ../../../../../../ && node dist/src/main/server.js",
-    "dev": "sucrase-node src/main/server.ts",
+    "start": "cd dist/infra/db/postgres/knex && npx knex migrate:latest && cd ../../../../../ && node dist/main/server.js",
+    "dev": "cross-env SECRET_KEY=\"&%ff_138çlx1+.1\" sucrase-node src/main/server.ts",
     "build:dev": "rimraf dist && tsc",
     "build": "rimraf dist && tsc",
-    "test": "vitest",
-    "test:ci": "vitest run --coverage"
+    "test": "cross-env SECRET_KEY=\"&%ff_138çlx1+.1\" vitest",
+    "test:ci": "cross-env SECRET_KEY=\"&%ff_138çlx1+.1\" vitest run --coverage"
   },
   "keywords": [],
   "author": "",

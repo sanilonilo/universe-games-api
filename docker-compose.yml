@@ -19,10 +19,12 @@ services:
     ports:
       - '3220:3220'
     volumes:
-      - ./dist:/usr/src/api/dist 
+      - ./dist:/usr/src/api/dist
     links:
-      - database     
+      - database      
 
 volumes:
   database:
     driver: local
+  api:
+    driver: local  

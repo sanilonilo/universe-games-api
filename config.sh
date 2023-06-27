@@ -1,7 +1,7 @@
 #!/sh
-if [ $1 = 'prod'];then
-    export $(grep -v '^#' .env | xargs)
-else export $(grep -v '^#' .env.dev | xargs)   
+if [[$1 = 'dev']];then
+    export $(grep -v '^#' .env.dev | xargs)
+else export $(grep -v '^#' .env | xargs)   
 fi 
 
 npm start
