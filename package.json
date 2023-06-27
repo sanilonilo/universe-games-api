@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start": "cd dist/infra/db/postgres/knex && npx knex migrate:latest && cd ../../../../../ && node dist/main/server.js",
-    "dev": "cross-env SECRET_KEY=\"&%ff_138çlx1+.1\" npm run migration-run-dev sucrase-node src/main/server.ts",
+    "dev": "cross-env SECRET_KEY=\"&%ff_138çlx1+.1\" sucrase-node src/main/server.ts",
     "migration-run-dev":"cd src/infra/db/postgres/knex && npx knex migrate:latest && cd ../../../../../",
     "build:dev": "rimraf dist && tsc",
     "build": "rimraf dist && tsc",
