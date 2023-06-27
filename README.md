@@ -1,20 +1,47 @@
-## Preparando ambiente de desenvolvimento
+# Commands:
 
+## Run project - Docker
 
-- Instale as dependências de desenvolvimento:
-    - Typescript
-    - Vitest para testes
-    ```shell
-    npm install -D typescript @types/node
-    npm install -D vistest
-    ```    
-- Crie e configure o arquivo tsconfig.json;
-- Crie e configure o arquivo vitest.config.ts;
+```shell
+docker-compose up
+```
 
-## Arquitetura escolhida para o projeto:
+## Stop project - Docker
+
+```shell
+docker-compose down
+```
+
+## Install libs
+
+```shell
+npm i
+```
+
+## Run project dev
+
+```shell
+npm run dev
+```
+
+## Run unit tests
+
+```shell
+npm run test
+```
+
+## Run coverage testing
+
+```shell
+npm run test:ci
+```
+
+# Project
+
+## Architecture chosen for the project:
 
 - ```Clean Architeture```
 
-## Metodologia de desenvolvimento usada:
+##  Development methodology used:
 
 - ```TDD```
